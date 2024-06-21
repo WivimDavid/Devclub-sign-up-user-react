@@ -1,30 +1,17 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import ImageTrash from "./assets/trash.png"
+import Card  from "../../components/card";
+import  H1  from "../../components/title";
+import Button from "../../components/button";
+import ImageTrash from "../../assets/trash.png"
 
-import { Container, Card, H1, P, Inputs, Button, User, Trash } from "./styled";
+import { Container, P, User, Trash } from "./styled";
 
-function App() {
-
+function Users() {
+  const history = useHistory();
   const [users, setUsers] = useState([])
-  const inputName = useRef()
-  const inputAge = useRef()
-
-  async function addNewUser() {
-
-    const { data: newUser } = await axios.post("http://localhost:3001/users", {
-      name: inputName.current.value,
-      age: inputAge.current.value
-    });
-
-
-    setUsers([...users, newUser,]);
-
-
-  }
-
-
 
   useEffect(() => {
 
@@ -40,11 +27,17 @@ function App() {
 
 
 
-  function deleteUser(userID) {
+  async function deleteUser(userID) {
+    await axios.delete(`http://localhost:3001/users/${userID}`)
+
     const newUsers = users.filter((user) => user.id !== userID)
+
     setUsers(newUsers)
   }
 
+  function goBackPage() {
+    history.push("/");
+  }
 
   return (
     <>
@@ -52,14 +45,8 @@ function App() {
         <Card>
 
           <P>Olá!</P>
-          <H1>Cadastre-se!</H1>
+          <H1>Usuários!</H1>
 
-          <Inputs ref={inputName} placeholder="Nome"></Inputs>
-          <Inputs ref={inputAge} placeholder="Idade"></Inputs>
-
-          <Button onClick={addNewUser}>
-            Cadastrar
-          </Button>
           <ul>
             {users.map(user => (
               <User key={user.id}>
@@ -72,6 +59,9 @@ function App() {
             ))
             }
           </ul>
+          <Button onClick={goBackPage} >
+            Voltar
+          </Button>
         </Card>
       </Container>
     </>
@@ -79,4 +69,4 @@ function App() {
 }
 
 
-export default App;
+export default Users;

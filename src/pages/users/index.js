@@ -16,7 +16,7 @@ function Users() {
   useEffect(() => {
 
     async function loadUsers() {
-      const { data: getUsers } = await axios.get("http://localhost:3001/users")
+      const { data: getUsers } = await axios.get("https://devclub-sign-up-users-backend.onrender.com/users")
 
       setUsers(getUsers)
 

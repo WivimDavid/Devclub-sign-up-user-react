@@ -28,7 +28,7 @@ function Users() {
 
 
   async function deleteUser(userID) {
-    await axios.delete(`http://localhost:3001/users/${userID}`)
+    await axios.delete(`https://devclub-sign-up-users-backend.onrender.com/users/${userID}`)
 
     const newUsers = users.filter((user) => user.id !== userID)
 

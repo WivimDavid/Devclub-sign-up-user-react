@@ -17,4 +17,4 @@ Abra [http://localhost:3000](http://localhost:3000) para visualizá-lo em seu na
 
 ## Projeto de cadastro de usuário desenvolvido no curso Devclub.
 
-<img src="./src/assets/banner-users.png" alt="banner projeto" width="100%"/>
+<img src="./src/assets/banner-users.png" alt="banner projeto" width="50%"/>
